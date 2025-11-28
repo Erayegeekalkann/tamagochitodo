@@ -39,7 +39,7 @@ A unique task management application that gamifies productivity by combining to-
 #### Option 1: Build from Source
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/tamagotchi-todo.git
+git clone https://github.com/Erayegeekalkann/tamagochitodo.git
 cd tamagotchi-todo
 
 # Build the project

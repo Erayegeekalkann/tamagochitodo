@@ -1,0 +1,129 @@
+<Window x:Class="TamagotchiTodo.Windows.AddTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add New Task" Height="550" Width="500"
+        Background="{DynamicResource PrimaryBackground}"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="LofiButton" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource Accent}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}"
+                                CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource AccentHover}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="LofiTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+    </Window.Resources>
+
+    <Border Margin="20" Background="{DynamicResource SecondaryBackground}"
+            BorderBrush="{DynamicResource Border}"
+            BorderThickness="1"
+            CornerRadius="8"
+            Padding="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <TextBlock Text="Create New Task"
+                       FontSize="20"
+                       FontWeight="SemiBold"
+                       Foreground="{DynamicResource PrimaryText}"
+                       Margin="0,0,0,20"/>
+
+            <!-- Task Title -->
+            <StackPanel Grid.Row="1" Margin="0,0,0,15">
+                <TextBlock Text="Task Title"
+                           Foreground="{DynamicResource PrimaryText}"
+                           FontWeight="Medium"
+                           Margin="0,0,0,5"/>
+                <TextBox x:Name="TitleTextBox"
+                         Style="{StaticResource LofiTextBox}"/>
+            </StackPanel>
+
+            <!-- Task Description -->
+            <StackPanel Grid.Row="2" Margin="0,0,0,15">
+                <TextBlock Text="Description (Optional)"
+                           Foreground="{DynamicResource PrimaryText}"
+                           FontWeight="Medium"
+                           Margin="0,0,0,5"/>
+                <TextBox x:Name="DescriptionTextBox"
+                         Style="{StaticResource LofiTextBox}"
+                         Height="60"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         VerticalScrollBarVisibility="Auto"/>
+            </StackPanel>
+
+            <!-- Stat Impacts Header -->
+            <TextBlock Grid.Row="3"
+                       Text="Stat Impacts (when completed)"
+                       Foreground="{DynamicResource PrimaryText}"
+                       FontWeight="Medium"
+                       Margin="0,0,0,10"/>
+
+            <!-- Stat Impacts -->
+            <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Auto" Margin="0,0,0,20">
+                <StackPanel x:Name="StatImpactsPanel">
+                    <!-- Stat sliders will be added here dynamically -->
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Buttons -->
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="Cancel"
+                        Style="{StaticResource LofiButton}"
+                        Click="Cancel_Click"
+                        Padding="12,8"/>
+
+                <Button Grid.Column="2"
+                        Content="Create Task"
+                        Style="{StaticResource LofiButton}"
+                        Click="CreateTask_Click"
+                        Padding="12,8"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
